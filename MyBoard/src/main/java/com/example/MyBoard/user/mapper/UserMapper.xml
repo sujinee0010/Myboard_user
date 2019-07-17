@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.MyBoard.user.mapper.UserMapper">
+
+    <insert id="join" parameterType="com.example.MyBoard.user.domain.User">
+        INSERT INTO
+        USER (ID, PW,NAME,GENDER)
+        VALUES(#{id},#{pw},#{name},#{gender})
+    </insert>
+
+    <select id="login" parameterType="String" resultType="com.example.MyBoard.user.domain.User">
+        SELECT
+        *
+        FROM USER
+        WHERE
+        id =#{id}
+        AND
+        pw =#{pw}
+    </select>
+
+    <select id="checkId" parameterType="String" resultType="int">
+        SELECT
+        COUNT(id)
+        FROM USER
+        WHERE
+        id =#{id}
+    </select>
+
+    <delete id="deleteUser" parameterType = "String">
+        DELETE FROM USER WHERE id = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="String">
+        UPDATE USER
+        SET
+            NAME = #{name},
+            GENDER = #{gender}
+        WHERE ID = #{ID}
+    </update>
+
+</mapper>
